@@ -1,0 +1,20 @@
+<h2>My drugs</h2>
+<div>
+    <!-- <ol class="drugs">
+        <li *ngFor="let drug of drugs | async">
+            <span class="badge">{{drug.name}}</span> {{drug.link}}
+        </li>
+    </ol> -->
+    <!-- <li *ngFor="let sideEffect of sideEffects | async">
+        <span class="badge">{{sideEffect.name}}</span> {{sideEffect.link}}
+    </li> -->
+
+    <ol class="sideEffects">
+        <li *ngFor="let sideEffect of sideEffects | async">
+            <span class="badge">{{sideEffect.name}}</span> ---s {{sideEffect.drugName}}
+        </li>
+    </ol>
+</div>
+<div>
+    <h2>{{(drug | async)?.link}}</h2>
+</div>
