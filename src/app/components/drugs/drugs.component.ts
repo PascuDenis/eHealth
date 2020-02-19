@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Drugs } from '../model/drugs';
-import { DrugsService } from '../services/drugs.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase, AngularFireObject, snapshotChanges } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DrugsService } from 'src/app/core/services/drugs.service';
 
 
 @Component({
