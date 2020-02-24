@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { FirebaseUserModel } from 'src/app/model/user.model';
 import { UserService } from '../../services/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { SideNavService } from '../../material/side-nav/side-nav.service';
 
 @Component({
   selector: 'app-user',
@@ -15,15 +16,18 @@ export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  toggleActive = false;
 
   constructor(
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
-    private location : Location,
-    private fb: FormBuilder
+    private location: Location,
+    private fb: FormBuilder,
+    private sidenav: SideNavService
   ) {
-
+    this.toggleActive = !this.toggleActive;
+    this.sidenav.toggleSideNav();
   }
 
   ngOnInit(): void {
@@ -38,24 +42,24 @@ export class UserComponent implements OnInit {
 
   createForm(name) {
     this.profileForm = this.fb.group({
-      name: [name, Validators.required ]
+      name: [name, Validators.required]
     });
   }
 
-  save(value){
+  save(value) {
     this.userService.updateCurrentUser(value)
-    .then(res => {
-      console.log(res);
-    }, err => console.log(err))
+      .then(res => {
+        console.log(res);
+      }, err => console.log(err))
   }
 
-  logout(){
+  logout() {
     this.authService.doLogout()
-    .then((res) => {
-      this.location.back();
-    }, (error) => {
-      console.log("Logout error", error);
-    });
+      .then((res) => {
+        this.location.back();
+      }, (error) => {
+        console.log("Logout error", error);
+      });
   }
 
 }

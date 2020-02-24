@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { rootRouterConfig } from './app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -23,13 +22,19 @@ import { UserComponent } from './core/authentication/user/user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatIconModule} from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { UserResolver } from './core/authentication/user/user.resolve';
 import { UserService } from './core/services/user.service';
 import { AuthService } from './core/services/auth.service';
 import { ForgottenPasswordComponent } from './core/authentication/forgotten-password/forgotten-password.component';
+import { MaterialModule } from './core/material/material.module';
+import { FirstComponent } from './core/material/side-nav/first/first.component';
+import { SecondComponent } from './core/material/side-nav/second/second.component';
+import { HomeComponent } from './core/material/layout/home/home.component';
+import { LoginLayoutComponent } from './core/material/layout/login-layout/login.component';
+import { appRoutes, rootRouterConfig } from './app-routing.module';
+
 
 
 @NgModule({
@@ -41,15 +46,18 @@ import { ForgottenPasswordComponent } from './core/authentication/forgotten-pass
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    ForgottenPasswordComponent
+    ForgottenPasswordComponent, 
+    FirstComponent,
+    SecondComponent,
+    HomeComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatIconModule,
-
+    MaterialModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDrugService, { dataEncapsulation: false }
