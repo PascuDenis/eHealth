@@ -3,9 +3,9 @@
         <form [formGroup]="loginForm" action="#">
             <h1>Create Account</h1>
             <div class="social-container">
-                <a href="#" (click)="tryFacebookLogin()" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" (click)="tryGoogleLogin()" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" (click)="tryTwitterLogin()" class="social"><i class="fab fa-linkedin-in"></i></a>
+                <a routerLink='home' (click)="tryFacebookLogin()" class="social"><i class="fab fa-facebook-f"></i>FB</a>
+                <a routerLink='home' (click)="tryGoogleLogin()" class="social"><i class="fab fa-google-plus-g"></i>G</a>
+                <a routerLink='home' (click)="tryTwitterLogin()" class="social"><i class="fab fa-linkedin-in"></i>TW</a>
             </div>
             <span>or use your email for registration</span>
             <div class="form-group">
@@ -21,9 +21,9 @@
         <form [formGroup]="loginForm" action="#">
             <h1>Sign in</h1>
             <div class="social-container">
-                <a href="#" (click)="tryFacebookLogin()" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" (click)="tryGoogleLogin()" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" (click)="tryTwitterLogin()" class="social"><i class="fab fa-linkedin-in"></i></a>
+                <a routerLink='home' (click)="tryFacebookLogin()" class="social"><i class="fab fa-facebook-f"></i>FB</a>
+                <a routerLink='home' (click)="tryGoogleLogin()" class="social"><i class="fab fa-google-plus-g"></i>G</a>
+                <a routerLink='home' (click)="tryTwitterLogin()" class="social"><i class="fab fa-linkedin-in"></i>TW</a>
             </div>
             <span>or use your account</span>
             <input type="email" formControlName="email" placeholder="Email" />

@@ -1,15 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { auth } from 'firebase';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private user: Observable<firebase.User>;
+  private userDetails: firebase.User = null;
 
-  constructor(public afAuth: AngularFireAuth) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.user = afAuth.authState;
 
-  getAuth(){
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          console.log(this.userDetails);
+        }
+        else {
+          this.userDetails = null;
+        }
+      }
+    );
+  }
+
+  getAuth() {
     return this.afAuth.auth;
   }
 
@@ -53,7 +72,7 @@ export class AuthService {
         })
     })
   }
-
+  
   doRegister(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
@@ -84,9 +103,23 @@ export class AuthService {
     });
   }
 
-  passwordReset(email: string){
-      return this.afAuth.auth.sendPasswordResetEmail(
-        email, 
-        {url: 'http://localhost:4200/login'});
+  passwordReset(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(
+      email,
+      { url: 'http://localhost:4200/login' });
+  }
+
+  isLoggedIn() {
+    if (this.userDetails == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logout() {
+    this.afAuth.auth.signOut()
+      .then((res) => this.router.navigate(['/']));
   }
 }
+

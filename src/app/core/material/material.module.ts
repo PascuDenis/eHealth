@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { FirstComponent } from './side-nav/first/first.component';
 import { SecondComponent } from './side-nav/second/second.component';
 import { RouterModule } from '@angular/router';
-import { appRoutes, rootRouterConfig } from 'src/app/app-routing.module';
+import { appRoutes } from 'src/app/app-routing.module';
 import { HomeComponent } from './layout/home/home.component';
 
 const materials = [
@@ -46,7 +46,7 @@ const materials = [
   imports: [
     materials,
     CommonModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    RouterModule.forRoot(appRoutes),
   ],
   exports: [
     materials, 

@@ -13,36 +13,39 @@ import { LoginLayoutComponent } from './core/material/layout/login-layout/login.
 import { HomeComponent } from './core/material/layout/home/home.component';
 import { LayoutComponent } from './core/material/layout/layout.component';
 
-export const rootRouterConfig: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
-  // { path: 'forgottenPassword', component: ForgottenPasswordComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: UserComponent, resolve: { data: UserResolver } },
-  { path: 'first', component: FirstComponent},
-  { path: 'second', component: SecondComponent },
+// export const rootRouterConfig: Routes = [
+//   { path: '', redirectTo: 'login', pathMatch: 'full' },
+//   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+//   // { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+//   // { path: 'forgottenPassword', component: ForgottenPasswordComponent, canActivate: [AuthGuard] },
+//   { path: 'user', component: UserComponent, resolve: { data: UserResolver } },
+//   { path: 'first', component: FirstComponent},
+//   { path: 'second', component: SecondComponent },
 
-];
+// ];
 export const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', data: { title: 'First Component' }, pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: 'login', component: LoginLayoutComponent, data: {title: 'First Component'},
+    path: 'login', component: LoginLayoutComponent, data: { title: 'First Component' }, canActivate: [AuthGuard],
     children: [
-      {path: '', component: LoginComponent}
+      { path: '', component: LoginComponent }
     ]
   },
-  { path: 'home', component: HomeComponent,
+  { path: 'forgottenPassword', component: ForgottenPasswordComponent, canActivate: [AuthGuard] },
+  {
+    path: 'home', component: HomeComponent,
     children: [
       { path: '', redirectTo: 'first', pathMatch: 'full' },
       { path: 'first', component: FirstComponent },
-      { path: 'second', component: SecondComponent }
+      { path: 'second', component: SecondComponent },
+      { path: 'user', component: UserComponent, resolve: { data: UserResolver } }
     ]
   }
 ]
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(rootRouterConfig)],
+    RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

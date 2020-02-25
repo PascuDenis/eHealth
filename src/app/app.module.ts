@@ -33,9 +33,7 @@ import { FirstComponent } from './core/material/side-nav/first/first.component';
 import { SecondComponent } from './core/material/side-nav/second/second.component';
 import { HomeComponent } from './core/material/layout/home/home.component';
 import { LoginLayoutComponent } from './core/material/layout/login-layout/login.component';
-import { appRoutes, rootRouterConfig } from './app-routing.module';
-
-
+import { appRoutes } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +56,7 @@ import { appRoutes, rootRouterConfig } from './app-routing.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    RouterModule.forRoot(appRoutes, { useHash: false }),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDrugService, { dataEncapsulation: false }
     ),
