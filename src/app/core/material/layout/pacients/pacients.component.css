@@ -1,0 +1,27 @@
+.data-table {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
+.mat-row:nth-child(2n + 1) {
+  background-color: #cccccc;
+}
+
+.mat-column-profilePicturePath {
+  flex: 0 0 60px;
+}
+.mat-column-id {
+  flex: 0 0 5px;
+}
+
+.ng-container {
+  font-size: 12px;
+  display: table-cell;
+  height: 48px;
+  margin-right: 10px;
+}
+
+.mat-cell {
+  border-right: 2px solid rgba(0, 0, 0, 0.12);
+}

@@ -1,0 +1,43 @@
+mat-form-field {
+    width: 300px;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+.profilePicture>input {
+    text-decoration: green;
+}
+
+.editProfileForm {
+    min-width: 150px;
+    max-width: 500px;
+    align-content: center;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    width: 450px;
+    align-self: center;
+}
+
+
+/* .profilePicture {
+    max-width: 50%;
+    align-self: flex-start;
+}
+
+.profileEdit {
+    max-width: 50%;
+    align-self: flex-start;
+}
+
+.changePassword {
+    max-width: 50%;
+    align-self: flex-end;
+} */

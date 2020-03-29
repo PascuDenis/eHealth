@@ -1,0 +1,61 @@
+<div class="data-table" *ngIf="!router.url.includes('pacient-details')">
+  <mat-form-field>
+    <input
+      (keyup)="applyFilter($event.target.value)"
+      matInput
+      placeholder="Search"
+    />
+  </mat-form-field>
+  <div class="container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort [trackBy]="trackByUid">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let pacient"> {{ pacient.id }} </mat-cell>
+      </ng-container>
+      <!-- Picture Column -->
+      <ng-container matColumnDef="profilePicturePath">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let pacient">
+          <img mat-card-avatar src="{{ pacient.profilePicturePath }}" />
+        </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          <p>Name</p>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pacient"> {{ pacient.name }} </mat-cell>
+      </ng-container>
+      <!-- Age Column -->
+      <ng-container matColumnDef="age">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          <p>Age</p>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pacient">
+          {{ pacient.age }}
+        </mat-cell>
+      </ng-container>
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>
+          <p>Email</p>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pacient"> {{ pacient.email }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        routerLink="pacient-details/{{ row.id }}"
+      ></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 30, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,29 @@
+.dialog {
+  width: 45vw;
+  height: 80vh;
+}
+
+.dialog-treatment-form{
+  height: 100%;
+}
+
+.dialog-drug-form {
+  overflow-y: hidden;
+}
+
+.fields {
+  width: 100%;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-header-flex > button {
+  background-color: rgb(196, 66, 15);
+}
+
+.button-flex {
+  justify-content: space-between;
+}

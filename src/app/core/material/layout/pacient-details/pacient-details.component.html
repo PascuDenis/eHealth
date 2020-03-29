@@ -1,0 +1,228 @@
+<div class="pacient-general-details-header">
+  <mat-card class="pacients">
+    <mat-card-header>
+      <img mat-card-avatar src="{{ pacient.profilePicturePath }}" />
+    </mat-card-header>
+    <mat-card-content class="content">
+      <mat-card-title class="item">{{ pacient.name }}</mat-card-title>
+      <div class="mini-container">
+        <mat-card-subtitle>
+          Birthdate: {{ pacient.birthdate }}
+        </mat-card-subtitle>
+        <mat-card-subtitle> Age: {{ age }} </mat-card-subtitle>
+        <mat-card-subtitle> Sex: {{ pacient.sex }} </mat-card-subtitle>
+      </div>
+      <div class="mini-container">
+        <mat-card-subtitle>State: {{ pacient.state }}</mat-card-subtitle>
+        <mat-card-subtitle>City: {{ pacient.city }}</mat-card-subtitle>
+      </div>
+      <mat-card-subtitle
+        >Address: {{ pacient.streetAddress }}
+      </mat-card-subtitle>
+      <mat-card-subtitle
+        >Telephon number: {{ pacient.telephoneNumber }}</mat-card-subtitle
+      >
+    </mat-card-content>
+    <mat-card-content class="content item">
+      <mat-card-title>{{ pacient.name }}</mat-card-title>
+      <mat-card-subtitle>varsta</mat-card-subtitle>
+      <mat-card-subtitle>telefon</mat-card-subtitle>
+      <mat-card-subtitle>adresa</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions> </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="pacient-general-details">
+  <div class="two">
+    <div class="main-content">
+      <div class="content-title">
+        <p>Problems</p>
+        <button mat-button class="add" (click)="addItems('2', 'Problem')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="content-item">
+        <mat-card
+          class="mat-content"
+          *ngFor="let p of problems | slice: startPage:paginationLimitProblems"
+        >
+          <div class="mat-conent-flex">
+            <mat-card-title>
+              {{ p.date }}
+            </mat-card-title>
+            <button mat-button (click)="deleteItems('Problems', p.id)">
+              <mat-icon class="delete-icon">clear</mat-icon>
+            </button>
+          </div>
+
+          <mat-card-content class="mat-content-items" (click)="modifyItem(p)">
+            {{ p.name }}
+          </mat-card-content>
+        </mat-card>
+
+        <button
+          mat-raised-button
+          *ngIf="paginationLimitProblems < problems.length"
+          (click)="showMoreItems('Problem')"
+        >
+          Show More
+        </button>
+        <button
+          mat-flat-button
+          *ngIf="paginationLimitProblems > 3"
+          (click)="showLessItems('Problem')"
+        >
+          Show Less
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="content-title">
+        <p>Allergies</p>
+        <button mat-button class="add" (click)="addItems('0', 'Allergy')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="content-item">
+        <mat-card
+          class="mat-content"
+          *ngFor="
+            let a of allergies | slice: startPage:paginationLimitAllergies
+          "
+        >
+          <div class="mat-conent-flex">
+            <mat-card-title>
+              {{ a.date }}
+            </mat-card-title>
+            <button mat-button (click)="deleteItems('Allergies', a.id)">
+              <mat-icon class="delete-icon">clear</mat-icon>
+            </button>
+          </div>
+
+          <mat-card-content class="mat-content-items" (click)="modifyItem(a)">
+            {{ a.name }}
+          </mat-card-content>
+        </mat-card>
+
+        <button
+          mat-raised-button
+          *ngIf="paginationLimitAllergies < allergies.length"
+          (click)="showMoreItems('Allergy')"
+        >
+          Show More
+        </button>
+        <button
+          mat-flat-button
+          *ngIf="paginationLimitAllergies > 3"
+          (click)="showLessItems('Allergy')"
+        >
+          Show Less
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="content-title">
+        <p>Observations</p>
+        <button mat-button class="add" (click)="addItems('1', 'Observation')">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="content-item">
+        <mat-card
+          class="mat-content"
+          *ngFor="
+            let o of observations | slice: startPage:paginationLimitObservations
+          "
+        >
+          <div class="mat-conent-flex">
+            <mat-card-title>
+              {{ o.date }}
+            </mat-card-title>
+            <button mat-button (click)="deleteItems('Observations', o.id)">
+              <mat-icon class="delete-icon">clear</mat-icon>
+            </button>
+          </div>
+
+          <mat-card-content class="mat-content-items" (click)="modifyItem(o)">
+            {{ o.name }}
+          </mat-card-content>
+        </mat-card>
+
+        <button
+          mat-raised-button
+          *ngIf="paginationLimitObservations < observations.length"
+          (click)="showMoreItems('Observation')"
+        >
+          Show More
+        </button>
+        <button
+          mat-flat-button
+          *ngIf="paginationLimitObservations > 3"
+          (click)="showLessItems('Observation')"
+        >
+          Show Less
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="one">
+    <div class="main-content">
+      <div class="content-title">
+        <p>Treatments</p>
+        <button mat-button class="add" (click)="addTreatment()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="content-item">
+        <mat-card
+          class="mat-content"
+          *ngFor="
+            let t of treatments | slice: startPage:paginationLimitTreatments
+          "
+        >
+          <div class="mat-conent-flex">
+            <mat-card-title>
+              {{ t.date }}
+            </mat-card-title>
+            <button mat-button (click)="deleteTreatment(t.id)">
+              <mat-icon class="delete-icon">clear</mat-icon>
+            </button>
+          </div>
+
+          <mat-card-content class="mat-content-items">
+            {{ t.name }}
+            {{ t.description }}
+            <mat-card-content
+              *ngFor="let d of t.drugAdministration; let i = index"
+            >
+              {{ d.drug }}
+              {{ d.administrationTime }}
+              {{ d.repeatAfterHour }}
+              {{ d.cycle }}
+              {{ d.dose }}
+            </mat-card-content>
+          </mat-card-content>
+        </mat-card>
+
+        <button
+          mat-raised-button
+          *ngIf="paginationLimitTreatments < treatments.length"
+          (click)="showMoreItems('Treatment')"
+        >
+          Show More
+        </button>
+        <button
+          mat-flat-button
+          *ngIf="paginationLimitTreatments > 3"
+          (click)="showLessItems('Treatment')"
+        >
+          Show Less
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

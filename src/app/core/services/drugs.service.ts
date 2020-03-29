@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Drugs } from 'src/app/model/drugs';
+import { IDrugs } from 'src/app/model/iDrugs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class DrugsService {
   private sideEffectsUrl = 'sideEffects/';
   private interractionsUrl = 'interractions/';
 
-  drugs$: Observable<Drugs[]>;
-  drug: Drugs;
+  drugs$: Observable<IDrugs[]>;
+  drug: IDrugs;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,13 +26,13 @@ export class DrugsService {
     private database: AngularFireDatabase
   ) { }
 
-  getAllDrugs(): Observable<Drugs[]> {
-    return this.database.list<Drugs>(this.drugsUrl).valueChanges();
+  getAllDrugs(): Observable<IDrugs[]> {
+    return this.database.list<IDrugs>(this.drugsUrl).valueChanges();
   }
 
-  getDrugWithName(term: string): Observable<Drugs> {
+  getDrugWithName(term: string): Observable<IDrugs> {
     term = term.replace(/[\/.#$]/g, "");
-    return this.database.object<Drugs>(this.drugsUrl + term).valueChanges();
+    return this.database.object<IDrugs>(this.drugsUrl + term).valueChanges();
   }
 
   getSideEffectsForDrugName(drugName: string): Observable<any[]> {

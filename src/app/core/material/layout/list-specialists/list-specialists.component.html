@@ -1,0 +1,30 @@
+<div class="searchBarDiv">
+    <form class="searchBarFrom" [formGroup]="searchBarFrom" action="#">
+        <mat-form-field class="searchBar">
+            <input class="searchBar" matInput type="text" placeholder="Search a specialist" formControlName="search">
+        </mat-form-field>
+        <button mat-raised-button type="submit" (click)="search(searchBarFrom.value)">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+</div>
+<div class="specialists-list" *ngIf="!router.url.includes('specialist-details')">
+    <mat-grid-list cols="{{spanSize}}" rowHeight="400px" gutterSize="8px">
+        <mat-grid-tile *ngFor="let specialist of specialists">
+            <mat-card class="specialists">
+                <mat-card-header>
+                    <img mat-card-avatar src="{{specialist.profilePicturePath}}">
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card-title>{{specialist.name}}</mat-card-title>
+                    <mat-card-subtitle>{{specialist.name}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{specialist.name}}</mat-card-subtitle>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button id="specialist-details" mat-button routerLink='specialist-details/{{specialist.id}}' (click)="toggleDiv()">Contact</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<router-outlet></router-outlet>

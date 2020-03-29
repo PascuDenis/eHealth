@@ -1,0 +1,12 @@
+<div>
+  <div class="content-container">
+    <button mat-button (click)="close()">
+      <mat-icon id="close">close</mat-icon>
+    </button>
+    <h3>
+      {{ data.data }}
+    </h3>
+  </div>
+  <button mat-button id="no-button" [mat-dialog-close]="false">No</button>
+  <button mat-button id="yes-button" [mat-dialog-close]="true">Yes</button>
+</div>

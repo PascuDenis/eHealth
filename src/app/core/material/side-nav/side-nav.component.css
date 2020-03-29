@@ -1,9 +1,89 @@
-.example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
+#toolbarMenu {
+  cursor: pointer;
+  margin-right: 20px;
 }
 
-.app-drawer-container {
-    height: 100%;
+#mainToolbar .toolbar-spacer {
+  flex: 1 1 auto;
 }
+
+#mainToolbar .toolbar-icon {
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+#sidenavContainer {
+  margin-top: 64px;
+}
+
+#sidenav {
+  width: 240px;
+}
+
+#sidenav.menu-close {
+  width: 70px;
+}
+
+#sidenav.menu-open {
+  width: 240px;
+}
+
+#sidenav .mat-list-item-content {
+  padding: 0;
+}
+
+#sidenav .menu-item {
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+}
+
+#menus {
+  padding-top: 0px;
+}
+
+.sidenav-content {
+  padding: 0px;
+}
+
+.sidenav-content-header {
+  padding: 12px;
+  height: 40px;
+}
+
+.sidenav-content-rmpadding {
+  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.menu-item {
+  padding-left: 5px;
+}
+
+/*
+#sidenav .menu-item:hover {
+    background: #eee;
+}
+
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content {
+    padding: 0;
+}
+
+*/
+
+.nav-hide-o-scroll {
+  padding-top: 0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/*
+.hide-subtitle-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+} */

@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
     ////  for eHealth application
     // apiKey: "AIzaSyCIsBjYJBNw-4dM1lsVMVxjqG5sUjljWQE",
     // authDomain: "ehealth-d859a.firebaseapp.com",
@@ -17,6 +16,7 @@ export const environment = {
 
     ////  LearnWithMe application 
     //    >>>>> TEST ONLY  <<<<<
+  firebaseConfig: {
     apiKey: "AIzaSyDdO6sY1r4GrG5Wk0BiSV6RiwH-kRmlQSY",
     authDomain: "learnwithme-d7e6f.firebaseapp.com",
     databaseURL: "https://learnwithme-d7e6f.firebaseio.com",

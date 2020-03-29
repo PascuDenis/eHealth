@@ -1,0 +1,228 @@
+<div class="dialog">
+  <h1 mat-dialog-title>Add new Treatment</h1>
+  <div
+    class="dialog-treatment-form"
+    mat-dialog-content
+    [formGroup]="dialogTreatmentForm"
+  >
+    <mat-label> Specialist ID</mat-label>
+    <mat-form-field class="fields">
+      <input
+        matInput
+        [(ngModel)]="data.specialistId"
+        formControlName="specialistId"
+        readonly
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="fields">
+      <input
+        matInput
+        [(ngModel)]="data.name"
+        placeholder="Name"
+        formControlName="name"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="fields">
+      <input
+        matInput
+        [(ngModel)]="data.description"
+        placeholder="Description"
+        formControlName="description"
+      />
+    </mat-form-field>
+    <!-- <p *ngIf="data.date">Current date is: {{ data.date }}</p> -->
+    <br />
+    <mat-form-field class="fields">
+      <mat-label>Choose a date:</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        [(ngModel)]="data.date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div
+      class="dialog-drug-form"
+      mat-dialog-content
+      formArrayName="drugAdministrations"
+      *ngFor="
+        let drugAdministration of dialogTreatmentForm.get(
+          'drugAdministrations'
+        )['controls'];
+        let i = index
+      "
+      [formGroup]="dialogDrugForm"
+    >
+      <div [formGroupName]="i" class="drugs-card">
+        <mat-card>
+          <div class="card-header-flex">
+            <mat-label> Enter drug: </mat-label>
+            <button
+              type="button"
+              mat-mini-fab
+              *ngIf="
+                dialogTreatmentForm.get('drugAdministrations')['length'] > 1
+              "
+              class="mat-raised-button mat-warning pull-right"
+              (click)="deleteDrugAdministationFromGroup(i)"
+            >
+              <mat-icon class="delete-icon">clear</mat-icon>
+            </button>
+          </div>
+
+          <mat-form-field
+            class="fields"
+            [ngClass]="{
+              'has-error':
+                drugAdministration.get('drug').invalid &&
+                drugAdministration.get('drug').touched
+            }"
+          >
+            <mat-label [attr.for]="'drug' + i">Enter drug name</mat-label>
+            <input
+              matInput
+              [id]="'drug' + i"
+              placeholder="Ex: Ibuprofen, Toradol"
+              formControlName="drug"
+            />
+            <span
+              class="help-checker"
+              *ngIf="
+                drugAdministration.get('drug').errors?.required &&
+                drugAdministration.get('drug').touched
+              "
+              >Drug name is required</span
+            >
+          </mat-form-field>
+
+          <mat-form-field
+            class="fields"
+            [ngClass]="{
+              'has-error':
+                drugAdministration.get('administrationTime').invalid &&
+                drugAdministration.get('administrationTime').touched
+            }"
+          >
+            <mat-label [attr.for]="'administrationTime' + i">Enter administration time: </mat-label>
+            <input
+              matInput
+              [id]="'administrationTime' + i"
+              placeholder="Ex: Morning, Afternoon"
+              formControlName="administrationTime"
+            />
+            <span
+              class="help-checker"
+              *ngIf="
+                drugAdministration.get('administrationTime').errors?.required &&
+                drugAdministration.get('administrationTime').touched
+              "
+              >Administration time is required</span
+            >
+          </mat-form-field>
+          <mat-form-field
+            class="fields"
+            [ngClass]="{
+              'has-error':
+                drugAdministration.get('repeatAfterHours').invalid &&
+                drugAdministration.get('repeatAfterHours').touched
+            }"
+          >
+            <mat-label [attr.for]="'repeatAfterHours' + i">Enter repeat after hours: </mat-label>
+            <input
+              matInput
+              [id]="'repeatAfterHours' + i"
+              placeholder="Ex: 4, 6, 12, ...   (1-12)"
+              formControlName="repeatAfterHours"
+            />
+            <span
+              class="help-checker"
+              *ngIf="
+                drugAdministration.get('repeatAfterHours').errors?.required &&
+                drugAdministration.get('repeatAfterHours').touched
+              "
+              >Repeat hour is required</span
+            >
+          </mat-form-field>
+
+          <mat-form-field
+            class="fields"
+            [ngClass]="{
+              'has-error':
+                drugAdministration.get('cycle').invalid &&
+                drugAdministration.get('cycle').touched
+            }"
+          >
+            <mat-label>Enter cycle</mat-label>
+            <input
+              matInput
+              [id]="'cycle' + i"
+              placeholder="Days number (1-30)"
+              formControlName="cycle"
+            />
+            <span
+              class="help-checker"
+              *ngIf="
+                drugAdministration.get('cycle').errors?.required &&
+                drugAdministration.get('cycle').touched
+              "
+              >Drug cycle is required
+            </span>
+          </mat-form-field>
+
+          <mat-form-field
+            class="fields"
+            [ngClass]="{
+              'has-error':
+                drugAdministration.get('dose').invalid &&
+                drugAdministration.get('dose').touched
+            }"
+          >
+            <mat-label>Enter dose</mat-label>
+            <input
+              matInput
+              [id]="'dose' + i"
+              placeholder="In mg.  (25-10000)"
+              formControlName="dose"
+            />
+            <span
+              class="help-checker"
+              *ngIf="
+                drugAdministration.get('dose').errors?.required &&
+                drugAdministration.get('dose').touched
+              "
+              >Drug dose is required</span
+            >
+          </mat-form-field>
+        </mat-card>
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="button-flex" mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">
+      Close
+    </button>
+    <button
+      class="mat-raised-button mat-primary"
+      (click)="addNewDrugButtonClick()"
+    >
+      Add new drug
+    </button>
+    <button
+      class="mat-raised-button mat-primary"
+      (click)="save()"
+      [disabled]="
+        dialogTreatmentForm.get('drugAdministrations').invalid ||
+        dialogTreatmentForm.get('name').invalid ||
+        dialogTreatmentForm.get('date').invalid
+      "
+    >
+      Save treatment
+    </button>
+  </div>
+</div>

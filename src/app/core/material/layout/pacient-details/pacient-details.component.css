@@ -1,0 +1,112 @@
+.pacients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.pacients > mat-card-header > img {
+  padding: 9px 1px 1px;
+}
+
+mat-card-title {
+  width: 350px;
+  margin-right: 25px;
+}
+
+.pacients > mat-card-header > img {
+  width: 150px;
+  height: 150px;
+}
+
+.mini-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pacient-general-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.pacient-general-details > div {
+  width: 500px;
+  margin-left: 15px;
+}
+
+.pacient-general-details > div > div {
+  background-color: rgba(128, 146, 203, 0.54);
+  margin-top: 5px;
+}
+
+.content {
+  padding: 5px 20px 1px;
+}
+
+.main-content {
+  border-radius: 5px;
+}
+
+.content-title {
+  background-color: rgb(195, 199, 202);
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-radius: 3px;
+}
+
+.content-title > p {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+}
+
+.content-item {
+  padding: 5px 10px 1px;
+  padding-bottom: 7px;
+}
+
+.mat-content {
+  margin-bottom: 5px;
+}
+
+.mat-conent-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.mat-conent-flex > button {
+  padding-top: 0px;
+}
+
+.mat-conent-flex > mat-card-title {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.content-item > mat-card {
+  background-color: rgb(103, 124, 121);
+  padding: 0px;
+}
+
+.mat-content-items {
+  background-color: rgb(117, 155, 149);
+  padding: 5px;
+  font-size: 16px;
+}
+
+.mat-icon {
+  transform: scale(1.5);
+}
+
+.delete-icon {
+  transform: scale(0.9);
+}
