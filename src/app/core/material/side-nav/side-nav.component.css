@@ -3,6 +3,10 @@
   margin-right: 20px;
 }
 
+#mainToolbar {
+  background-color: #109e9e;
+}
+
 #mainToolbar .toolbar-spacer {
   flex: 1 1 auto;
 }

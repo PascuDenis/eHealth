@@ -15,7 +15,7 @@ import { DashboardComponent } from "./core/material/layout/dashboard/dashboard.c
 import { AppointmentsComponent } from "./core/material/layout/appointments/appointments.component";
 import { CalendarComponent } from "./core/material/layout/calendar/calendar.component";
 import { PacientsComponent } from "./core/material/layout/pacients/pacients.component";
-import { PacientDetailsComponent } from './core/material/layout/pacient-details/pacient-details.component';
+import { PacientDetailsComponent } from "./core/material/layout/pacient-details/pacient-details.component";
 
 export const appRoutes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },

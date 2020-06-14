@@ -5,11 +5,12 @@ import { MatPaginator } from "@angular/material/paginator";
 import { Pacients } from "src/app/model/Pacients";
 import { PacientService } from "src/app/core/services/pacient.service";
 import { Router } from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: "app-pacients",
   templateUrl: "./pacients.component.html",
-  styleUrls: ["./pacients.component.css"]
+  styleUrls: ["./pacients.component.css"],
 })
 export class PacientsComponent implements OnInit {
   pacients: Pacients[] = [];
@@ -24,13 +25,10 @@ export class PacientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource.filterPredicate = function(data, filter: string): boolean {
+    this.dataSource.filterPredicate = function (data, filter: string): boolean {
       return (
         data.name.toLowerCase().includes(filter) ||
-        data.age
-          .toString()
-          .toLowerCase()
-          .includes(filter) ||
+        data.age.toString().toLowerCase().includes(filter) ||
         data.email.toString().includes(filter)
       );
     };
@@ -46,7 +44,7 @@ export class PacientsComponent implements OnInit {
   }
 
   displayPacients() {
-    this.pacientService.getAllPacients().subscribe(data => {
+    this.pacientService.getAllPacients().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -59,5 +57,9 @@ export class PacientsComponent implements OnInit {
 
   trackByUid(index, item) {
     return item.uid;
+  }
+
+  ageFromBirthdate(birthdate): number {
+    return moment().diff(birthdate.split("/")[2], "years");
   }
 }

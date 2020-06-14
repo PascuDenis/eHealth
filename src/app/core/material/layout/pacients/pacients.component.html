@@ -34,7 +34,7 @@
           <p>Age</p>
         </mat-header-cell>
         <mat-cell *matCellDef="let pacient">
-          {{ pacient.age }}
+          {{ ageFromBirthdate(pacient.birthdate) }}
         </mat-cell>
       </ng-container>
       <!-- Email Column -->

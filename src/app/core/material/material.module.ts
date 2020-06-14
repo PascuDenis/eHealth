@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { appRoutes } from "src/app/app-routing.module";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
@@ -18,34 +19,30 @@ import { SideNavService } from "./side-nav/side-nav.service";
 import { TogglerComponent } from "./side-nav/toggler/toggler.component";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { appRoutes } from "src/app/app-routing.module";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { MatDividerModule } from "@angular/material/divider";
 import { AppointmentsComponent } from "./layout/appointments/appointments.component";
 import { CalendarComponent } from "./layout/calendar/calendar.component";
 import { DashboardComponent } from "./layout/dashboard/dashboard.component";
-import {
-  ScheduleModule,
-  RecurrenceEditorModule,
-  DayService,
-  WeekService,
-  WorkWeekService,
-  MonthAgendaService,
-  MonthService
-} from "@syncfusion/ej2-angular-schedule";
+import { FullCalendarModule } from "@fullcalendar/angular";
+
 import { PacientsComponent } from "./layout/pacients/pacients.component";
 import { PacientDetailsComponent } from "./layout/pacient-details/pacient-details.component";
 import { MatNativeDateModule } from "@angular/material/core";
 import { AddDialogComponent } from "./layout/dialogs/add-dialog/add-dialog.component";
 import { GeneralDialogComponent } from "./layout/dialogs/general-dialog/general-dialog.component";
 import { TreatmentDialogComponent } from "./layout/dialogs/treatment-dialog/treatment-dialog.component";
+import { EventDialogComponent } from "./layout/dialogs/event-dialog/event-dialog.component";
 
 const materials = [
   LayoutModule,
@@ -67,13 +64,15 @@ const materials = [
   MatDialogModule,
   MatDatepickerModule,
   MatSelectModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatAutocompleteModule,
   MatNativeDateModule,
 
   ReactiveFormsModule,
   FormsModule,
 
-  ScheduleModule,
-  RecurrenceEditorModule
+  FullCalendarModule,
 ];
 
 @NgModule({
@@ -88,17 +87,11 @@ const materials = [
     PacientDetailsComponent,
     AddDialogComponent,
     GeneralDialogComponent,
-    TreatmentDialogComponent
+    TreatmentDialogComponent,
+    EventDialogComponent,
   ],
   imports: [materials, CommonModule, RouterModule.forRoot(appRoutes)],
   exports: [materials, SideNavComponent, LayoutComponent, CommonModule],
-  providers: [
-    SideNavService,
-    DayService,
-    WeekService,
-    WorkWeekService,
-    MonthService,
-    MonthAgendaService
-  ]
+  providers: [SideNavService],
 })
 export class MaterialModule {}

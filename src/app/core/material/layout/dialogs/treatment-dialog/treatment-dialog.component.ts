@@ -4,27 +4,32 @@ import {
   FormBuilder,
   Validators,
   FormControl,
-  FormArray
+  FormArray,
 } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AddDialogComponent } from "../add-dialog/add-dialog.component";
 import { DialogTreatmentData } from "src/app/model/DialogTreatmentData";
 import { Treatments } from "src/app/model/Treatments";
 import { DatePipe } from "@angular/common";
+import { DrugAdministration } from "src/app/model/DrugAdministration";
+import { DrugsService } from "src/app/core/services/drugs.service";
+import { IDrugs } from 'src/app/model/iDrugs';
 
 @Component({
   selector: "app-treatment-dialog",
   templateUrl: "./treatment-dialog.component.html",
-  styleUrls: ["./treatment-dialog.component.css"]
+  styleUrls: ["./treatment-dialog.component.css"],
 })
-export class TreatmentDialogComponent {
+export class TreatmentDialogComponent implements OnInit {
   treatment: Treatments;
+  searchedDrugs: any[];
+  querryText: string;
 
   dialogTreatmentForm = new FormGroup({
     specialistId: new FormControl(""),
     name: new FormControl(""),
     date: new FormControl(""),
-    description: new FormControl("")
+    description: new FormControl(""),
   });
 
   dialogDrugForm = new FormGroup({
@@ -32,7 +37,7 @@ export class TreatmentDialogComponent {
     adminidrugNamestrationTime: new FormControl(""),
     repeatAfterHours: new FormControl(""),
     cycle: new FormControl(""),
-    dose: new FormControl("")
+    dose: new FormControl(""),
   });
 
   exampleForm: FormGroup;
@@ -43,10 +48,14 @@ export class TreatmentDialogComponent {
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
     public dialogRef: MatDialogRef<AddDialogComponent>,
+    public drugsService: DrugsService,
     @Inject(MAT_DIALOG_DATA) public data: DialogTreatmentData
   ) {
     this.createForm();
     console.log(this.data);
+  }
+
+  ngOnInit() {
   }
 
   // private getCountryByIpOnline(): Observable<any> {
@@ -61,8 +70,8 @@ export class TreatmentDialogComponent {
       date: ["", Validators.required],
       description: [""],
       drugAdministrations: this.formBuilder.array([
-        this.addDrugAdministrationFormGroup()
-      ])
+        this.addDrugAdministrationFormGroup(),
+      ]),
     });
   }
 
@@ -78,7 +87,7 @@ export class TreatmentDialogComponent {
       administrationTime: ["", Validators.required],
       repeatAfterHours: ["", [Validators.min(1), Validators.max(12)]],
       cycle: ["", [Validators.min(1), Validators.max(30)]],
-      dose: ["", [Validators.min(25), Validators.max(10000)]]
+      dose: ["", [Validators.min(25), Validators.max(10000)]],
     });
     return this.dialogDrugForm;
   }
@@ -106,7 +115,21 @@ export class TreatmentDialogComponent {
     this.dialogRef.close(this.treatment);
   }
 
+  search($event) {
+    const querryText = $event.target.value;
+    console.log(querryText);
+
+    this.querryText = querryText;
+
+    this.drugsService
+      .getDrugsWithName(this.querryText)
+      .subscribe((drugs) => {
+        console.log(drugs);
+        this.searchedDrugs = drugs;
+      });
+  }
+
   close(): void {
-    this.dialogRef.close('exit');
+    this.dialogRef.close("exit");
   }
 }

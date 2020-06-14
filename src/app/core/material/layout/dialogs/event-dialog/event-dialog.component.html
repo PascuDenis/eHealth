@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Add new event</h1>
+<div class="dialog-form" mat-dialog-content [formGroup]="dialogForm">
+  <mat-form-field class="fields">
+    <input matInput placeholder="Title" formControlName="title" />
+  </mat-form-field>
+  <br />
+  <mat-form-field class="fields">
+    <mat-label>Choose a start time:</mat-label>
+    <mat-select
+      name="start time"
+      formControlName="startTime"
+      [(ngModel)]="clickedTime"
+    >
+      <mat-option [value]="clickedTime">
+        {{ clickedTime }}
+      </mat-option>
+      <mat-option *ngFor="let hour of HOURS" [value]="hour">
+        {{ hour }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br />
+  <mat-form-field class="fields">
+    <mat-label>Choose an end time:</mat-label>
+    <mat-select name="end time" formControlName="endTime">
+      <mat-option *ngFor="let hour of HOURS" [value]="hour">
+        {{ hour }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br />
+  <mat-form-field class="fields">
+    <mat-label>Add description</mat-label>
+    <input matInput placeholder="Description" formControlName="description" />
+  </mat-form-field>
+</div>
+
+<div class="button-flex" mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">
+    Close
+  </button>
+
+  <button class="mat-raised-button mat-primary" (click)="save()">
+    Save
+  </button>
+</div>
